@@ -1,7 +1,8 @@
 const User = require("../models/userModel")
 const bcrypt = require('bcryptjs');
 const bcryptSalt = bcrypt.genSaltSync(10);
-
+const jwt=require('jsonwebtoken')
+const jwtSecret='asdfghjklasdf456' //just a random string
 
   exports.regUser= async (req, res) => {
     const { name, email, password } = req.body;
@@ -18,3 +19,25 @@ const bcryptSalt = bcrypt.genSaltSync(10);
       res.status(422).json(e);
     }
   };
+
+  exports.signinUser=async(req,res)=>{
+    const {email,password}=req.body;
+    const userDoc=await User.findOne({email});
+    if(userDoc){
+      const passok=bcrypt.compareSync(password,userDoc.password);
+      if(passok){
+        //id from mongodb
+        //3rd params as empty option ,fourth is callback fn
+        jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
+          if(err) throw err;
+          res.cookie('token',token).json(userDoc)
+        })
+
+      } else{
+        res.status(422).json('passwpord not ok')
+      }
+    } else{
+      res.status(503).json(' email not found')
+
+    }
+  }
