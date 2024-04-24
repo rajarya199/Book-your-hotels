@@ -28,7 +28,11 @@ const jwtSecret='asdfghjklasdf456' //just a random string
       if(passok){
         //id from mongodb
         //3rd params as empty option ,fourth is callback fn
-        jwt.sign({email:userDoc.email,id:userDoc._id},jwtSecret,{},(err,token)=>{
+        jwt.sign(
+          {email:userDoc.email,
+          id:userDoc._id,
+          
+        },jwtSecret,{},(err,token)=>{
           if(err) throw err;
           res.cookie('token',token).json(userDoc)
         })
@@ -41,3 +45,16 @@ const jwtSecret='asdfghjklasdf456' //just a random string
 
     }
   }
+  exports.userProfile=async (req,res) => {
+    
+    const {token} = req.cookies;
+    if (token) {
+      jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+        if (err) throw err;
+        const {name,email,_id} = await User.findById(userData.id);
+        res.json({name,email,_id});
+      });
+    } else {
+      res.json(null);
+    }
+  };

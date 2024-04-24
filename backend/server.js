@@ -3,9 +3,10 @@ const app=express();
 require('dotenv').config()
 require('./db/connection')
 const cors=require('cors')
-
+const cookieParser=require('cookie-parser')
 //middleware
 app.use(express.json());
+app.use(cookieParser())
 
 app.use(cors(
     {

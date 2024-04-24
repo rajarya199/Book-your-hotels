@@ -5,10 +5,12 @@ import Layout from "./components/Layout";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
+import { UserContextProvider } from "./UserContext";
 
 const MyRoute = () => {
   return (
-    <Router>
+    <UserContextProvider>
+         <Router>
         <Routes>
             <Route path='/' element={ <Layout/>}>
                 <Route index element={<IndexPage/>}/>
@@ -17,6 +19,8 @@ const MyRoute = () => {
                 </Route>
         </Routes>
     </Router>
+    </UserContextProvider>
+   
   )
 }
 
