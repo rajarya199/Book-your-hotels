@@ -37,7 +37,7 @@ const jwtSecret='asdfghjklasdf456' //just a random string
         })
 
       } else{
-        res.status(422).json('passwpord not ok')
+        res.status(422).json('password not ok')
       }
     } else{
       res.status(503).json(' email not found')
@@ -57,3 +57,8 @@ const jwtSecret='asdfghjklasdf456' //just a random string
       res.json(null);
     }
   };
+
+  exports.signOut=async(req,res)=>{
+  res.cookie('token','').json(true);    
+
+  }
