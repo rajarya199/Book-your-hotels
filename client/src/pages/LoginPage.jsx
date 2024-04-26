@@ -29,7 +29,7 @@ const {setUser} =useContext(UserContext);
     <div className='mt-4 grow flex items-center justify-around'>
         <div className='mb-32'>
         <h1 className="text-4xl text-center mb-4">Login</h1>
-    <form action="" className='max-w-md mx-auto ' onSubmit={handleLogin}>
+    <form  className='max-w-md mx-auto ' onSubmit={handleLogin}>
         <input type="email"
          placeholder="your@email.com" 
          value={email}

@@ -4,7 +4,7 @@ import {data} from "autoprefixer";
 ///note--this context provider is designed to fetch user data from the server when the component mounts and make it available to its children components
  
 
-
+ 
 export const UserContext = createContext({});
 
 export function UserContextProvider({children}) {
@@ -12,7 +12,7 @@ export function UserContextProvider({children}) {
   const [ready,setReady] = useState(false);
   useEffect(() => {
     if (!user) {
-      axios.get('/profile').then(({data}) => {
+      axios.get('api/profile').then(({data}) => {
         setUser(data);
         setReady(true);
       });

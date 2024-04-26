@@ -7,6 +7,8 @@ import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import { UserContextProvider } from "./UserContext";
 
+import AccountPage from "./pages/AccountPage";
+
 const MyRoute = () => {
   return (
     <UserContextProvider>
@@ -16,6 +18,7 @@ const MyRoute = () => {
                 <Route index element={<IndexPage/>}/>
                 <Route path='/login' element={<LoginPage/> }/>
                 <Route path='/register' element={<Register/>}/>
+                <Route path='/account/:subpage?' element={<AccountPage/>}/>
                 </Route>
         </Routes>
     </Router>

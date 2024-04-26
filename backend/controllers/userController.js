@@ -3,7 +3,6 @@ const bcrypt = require('bcryptjs');
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwt=require('jsonwebtoken')
 const jwtSecret='asdfghjklasdf456' //just a random string
-
   exports.regUser= async (req, res) => {
     const { name, email, password } = req.body;
   
