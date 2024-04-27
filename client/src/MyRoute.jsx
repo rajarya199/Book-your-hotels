@@ -7,18 +7,23 @@ import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import { UserContextProvider } from "./UserContext";
 
-import AccountPage from "./pages/AccountPage";
+
+import ProfilePage from "./pages/ProfilePage";
+import PlacesPage from "./pages/PlacesPage";
+import PlaceForm from "./pages/PlaceForm";
 
 const MyRoute = () => {
   return (
     <UserContextProvider>
          <Router>
         <Routes>
-            <Route path='/' element={ <Layout/>}>
+            < Route path='/' element={ <Layout/>}>
                 <Route index element={<IndexPage/>}/>
                 <Route path='/login' element={<LoginPage/> }/>
                 <Route path='/register' element={<Register/>}/>
-                <Route path='/account/:subpage?' element={<AccountPage/>}/>
+                <Route path='/account' element={<ProfilePage/>}/>
+                <Route path='/account/places' element={<PlacesPage/>}/>
+                <Route path='/account/places/new' element={<PlaceForm/>}/>
                 </Route>
         </Routes>
     </Router>
