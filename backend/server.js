@@ -4,9 +4,14 @@ require('dotenv').config()
 require('./db/connection')
 const cors=require('cors')
 const cookieParser=require('cookie-parser')
+const path = require('path');
+
 //middleware
 app.use(express.json());
 app.use(cookieParser())
+// app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/uploads',express.static(__dirname+'/uploads'));
 
 app.use(cors(
     {
@@ -22,10 +27,12 @@ app.get('/test',(req,res)=>{
 
 
 const userRoute=require('./routes/userRoute')
+const placeRoute=require('./routes/placeRoute')
 
 
 //
 app.use('/api',userRoute)
+app.use('/api',placeRoute)
 
 
 
